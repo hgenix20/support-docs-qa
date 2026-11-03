@@ -1,0 +1,42 @@
+[project]
+name = "support-docs-qa"
+version = "0.1.0"
+description = "Support-doc Q&A: RAG on Bedrock, DynamoDB vectors, Lambda behind API Gateway, deployed with CDK"
+requires-python = ">=3.12"
+dependencies = [
+    "aws-cdk-lib>=2.170.0",
+    "constructs>=10.0.0",
+]
+
+[project.optional-dependencies]
+# Lambda runtime ships boto3; it is needed locally only for imports and tests.
+dev = [
+    "boto3>=1.35.0",
+    "pytest>=8.0",
+    "ruff>=0.6.0",
+    "pyright>=1.1.380",
+    "bandit>=1.7.9",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "BLE", "RUF", "ARG", "F841"]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests assert with plain asserts, use seeded random for reproducible fuzzing,
+# and use fakes whose methods ignore arguments the port requires.
+"tests/**" = ["S101", "S311", "ARG002"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.12"
+include = ["src", "infra", "app.py", "tests"]
+typeCheckingMode = "standard"

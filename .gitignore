@@ -1,0 +1,8 @@
+.venv/
+cdk.out/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.pyright/
+*.egg-info/

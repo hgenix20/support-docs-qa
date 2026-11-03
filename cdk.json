@@ -1,0 +1,7 @@
+{
+  "app": "python app.py",
+  "context": {
+    "embed_model_id": "amazon.titan-embed-text-v2:0",
+    "generation_model_id": "REPLACE-WITH-VERIFIED-BEDROCK-MODEL-ID"
+  }
+}
